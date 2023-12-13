@@ -1,49 +1,92 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ColourChange : MonoBehaviour
 {
-    public Color[] colors; // Array of colors to cycle through
+    private Material[] materials; // Array of colors to cycle through
+
     public float colorChangeInterval = 1f; // Time interval between color changes
 
     private int currentColorIndex = 0;
-    private Rigidbody rb;
-    private Material material;
+    public Material nextMaterial;
+
+    private void Awake()
+    {
+        GetMaterials();
+    }
+
+    private void GetMaterials()
+    {
+        string[] materialNames = { "BlueGoal", "GreenGoal", "RedGoal" };
+        List<Material> loadedMaterials = new List<Material>();
+
+        foreach (string materialName in materialNames)
+        {
+            Material material = Resources.Load<Material>("Materials/" + materialName);
+
+            if (material != null)
+            {
+                loadedMaterials.Add(material);
+            }
+            else
+            {
+                Debug.LogError("Failed to load material: " + materialName);
+            }
+        }
+
+        materials = loadedMaterials.ToArray();
+    }
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        material = GetComponent<Renderer>().material;
-    }
 
-    private void Update()
-    {
-        // Add any additional logic based on the color
-        HandleColorEffects();
+        if (materials == null || materials.Length == 0)
+        {
+            Debug.LogError("No materials found in the 'Materials' folder within the 'Resources' folder.");
+        }
+
+        Renderer renderer = GetComponent<Renderer>();
+
+        if (renderer != null)
+        {
+            nextMaterial = renderer.material;
+        }
+        else
+        {
+            Debug.LogError("Renderer component not found on the object.");
+        }
     }
 
     public void ChangeColor()
     {
-        currentColorIndex = (currentColorIndex + 1) % colors.Length;
-        material.color = colors[currentColorIndex];
+        GetMaterials();
+
+        Debug.Log("Current Color Index: " + currentColorIndex);
+
+        if (materials != null && materials.Length > 0)
+        {
+            currentColorIndex = (currentColorIndex + 1) % materials.Length;
+
+            Renderer renderer = gameObject.GetComponent<MeshRenderer>();
+
+            if (renderer != null)
+            {
+                nextMaterial = materials[currentColorIndex];
+                renderer.material = nextMaterial;
+            }
+            else
+            {
+                Debug.LogError("Renderer component not found on the object.");
+            }
+        }
+        else
+        {
+            Debug.LogError("Materials array is null or empty.");
+            Debug.Log("Materials array length: " + (materials != null ? materials.Length : 0));
+        }
     }
 
-    void HandleColorEffects()
-    {
-        Color currentColor = material.color;
-
-        // Example: Define different behaviors for each color
-        if (currentColor == Color.red)
-        {
-            // Do something specific for red color
-            Debug.Log("Red Color Effect");
-        }
-        else if (currentColor == Color.blue)
-        {
-            // Do something specific for blue color
-            Debug.Log("Blue Color Effect");
-        }
-    }
 }
 

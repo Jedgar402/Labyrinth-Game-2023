@@ -6220,7 +6220,7 @@ GameObject:
   - component: {fileID: 3399859094339317208}
   m_Layer: 5
   m_Name: Title
-  m_TagString: Untagged
+  m_TagString: Title
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6604,7 +6604,7 @@ GameObject:
   - component: {fileID: 3399859094803614979}
   m_Layer: 5
   m_Name: StartButton
-  m_TagString: Untagged
+  m_TagString: Start Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6738,7 +6738,7 @@ GameObject:
   - component: {fileID: 3399859094896711552}
   m_Layer: 0
   m_Name: Goal
-  m_TagString: Untagged
+  m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7225,7 +7225,7 @@ GameObject:
   - component: {fileID: 3399859095171036931}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7580,7 +7580,7 @@ GameObject:
   - component: {fileID: 8695204202084803939}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7710,3 +7710,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5ab4ba044fa7c74ba44ccbb72dee940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameCont: {fileID: 0}

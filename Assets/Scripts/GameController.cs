@@ -16,18 +16,66 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        ball.SetActive(false);
+        // Assign Ball script to the ball GameObject
+        if (ball == null)
+        {
+            ball = GameObject.Find("Ball");
 
-        //UI
-        startButton.SetActive(true);
-        title.SetActive(true);
+            if (ball != null)
+            {
+                Ball ballScript = ball.GetComponent<Ball>();
 
+                if (ballScript != null)
+                {
+                    ballScript.gameCont = this;
+                }
+                else
+                {
+                    Debug.LogError("Ball script not found on the player GameObject.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Ball GameObject not found.");
+            }
+        }
+
+        if (startButton == null)
+        {
+            startButton = GameObject.FindGameObjectWithTag("Start Button");
+        }
+        else
+        {
+            // UI
+            startButton.SetActive(true);
+        }
+
+        if (title == null)
+        {
+            title = GameObject.FindGameObjectWithTag("Title");
+        }
+        else
+        {
+            title.SetActive(true);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetBall(GameObject ballObject)
     {
-        
+        ball = ballObject;
+    }
+
+    public void SetTitleAndBall(GameObject titleObject, GameObject ballObject)
+    {
+        title = GameObject.Find("Title");
+        title = titleObject;
+        ball = GameObject.Find("Ball");
+        ball = ballObject;   
+    }
+
+    public void SetTitleText(Text titleTextComponent)
+    {
+        titleText = titleTextComponent;
     }
 
     public void StartGame()
@@ -37,22 +85,43 @@ public class GameController : MonoBehaviour
         title.SetActive(false);
     }
 
-
     public void LevelComplete()
-    { 
-            title.SetActive(true);
-            title.GetComponent<Text>().text = "Level "+ levelNumber+  " complete!";
-            ball.SetActive(false);
+    {
+        SetTitleAndBall(title, ball);
 
-        if (levelNumber < 3)
+        if (title != null)
         {
-            StartCoroutine(LoadLevelWithDelay(levelNumber + 1));
+            if (titleText != null)
+            {
+                titleText.text = "Level " + levelNumber + " complete!";
+            }
+            else
+            {
+                Debug.LogError("Text component not found on the title GameObject.");
+            }
         }
         else
         {
-            StartCoroutine(LoadLevelWithDelay(1)); // Back to level 1
+            Debug.LogError("Title GameObject not found.");
         }
 
+        if (ball != null)
+        {
+            ball.SetActive(false);
+
+            if (levelNumber < 3)
+            {
+                StartCoroutine(LoadLevelWithDelay(levelNumber + 1));
+            }
+            else
+            {
+                StartCoroutine(LoadLevelWithDelay(1)); // Back to level 1
+            }
+        }
+        else
+        {
+            Debug.LogError("Ball GameObject not found.");
+        }
     }
 
     public IEnumerator LoadLevelWithDelay(int levelNo)
