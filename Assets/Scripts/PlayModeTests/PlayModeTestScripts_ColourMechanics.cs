@@ -27,6 +27,7 @@ public class PlayModeTestScripts_ColourMechanics
         playerColourChange = playerObject.AddComponent<ColourChange>();
 
         ballObject = new GameObject();
+        ballObject.name = "Ball";
         ballScript = ballObject.AddComponent<Ball>();
 
         goalObject = new GameObject();
@@ -109,19 +110,30 @@ public class PlayModeTestScripts_ColourMechanics
         // Arrange
         GameObject ballObject = new GameObject("Ball");
         Ball ballScript = ballObject.AddComponent<Ball>();
-        ballScript.gameCont = new GameObject().AddComponent<GameController>();
 
-        // Set up materials and colors
-        Material ballMaterial = new Material(Shader.Find("Assets/Materials/RedGoal.mat")); // Create a new material
-        ballScript.gameObject.AddComponent<Renderer>().material = ballMaterial;
+        GameObject titleObject = new GameObject("Title");
+        Text titleTextComponent = titleObject.AddComponent<Text>();
+        GameController gameCont = new GameObject().AddComponent<GameController>();
+        gameCont.SetTitleText(titleTextComponent);
+
+        // Set up materials and shader
+        Material ballMaterial = Resources.Load<Material>("RedGoal");
+        ballObject.AddComponent<MeshRenderer>().material = ballMaterial;
+
+        // Set the ball explicitly in the Ball script
+        ballScript.gameCont = gameCont;
 
         GameObject goalObject = new GameObject("Goal");
-        goalObject.AddComponent<Renderer>().material.color = Color.blue;
+        // MeshRenderer goalRenderer = goalObject.AddComponent<MeshRenderer>();
+        goalObject.AddComponent<MeshRenderer>().material = Resources.Load<Material>("BlueGoal");
+
+        // Add a collider to the goalObject
+        BoxCollider goalCollider = goalObject.AddComponent<BoxCollider>();
 
         bool levelCompleteCalled = false;
 
         // Act
-        ballScript.OnTriggerEnter(goalObject.GetComponent<Collider>());
+        ballScript.OnTriggerEnter(goalObject.GetComponent<BoxCollider>());
 
         // Assert
         Assert.IsFalse(levelCompleteCalled);
