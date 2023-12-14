@@ -43,6 +43,8 @@ public class GameController : MonoBehaviour
         if (startButton == null)
         {
             startButton = GameObject.FindGameObjectWithTag("Start Button");
+            // UI
+            startButton.SetActive(true);
         }
         else
         {
@@ -91,6 +93,8 @@ public class GameController : MonoBehaviour
 
         if (title != null)
         {
+            title = GameObject.Find("Title");
+
             if (titleText != null)
             {
                 titleText.text = "Level " + levelNumber + " complete!";
