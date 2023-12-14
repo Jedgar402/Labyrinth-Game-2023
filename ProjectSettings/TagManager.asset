@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Title
   - Start Button
+  - enemy
   layers:
   - Default
   - TransparentFX
