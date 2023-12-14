@@ -17,7 +17,7 @@ public class PlayModeTest_UI
 
         yield return null;
         // Find button in the scene
-        Button restartButton = GameObject.Find("RestartButton").GetComponent<Button>();
+        Button restartButton = GameObject.Find("Restart Button").GetComponent<Button>();
 
         //Presses button
         restartButton.onClick.Invoke();
@@ -47,5 +47,22 @@ public class PlayModeTest_UI
 
     }
 
-    
+    [UnityTest]
+    public IEnumerator TestLivesLowerThan0()
+    {
+        GameObject testObject = new GameObject();
+        Lives livesScript = testObject.AddComponent<Lives>();
+
+        int expectedLivesAfterDamage = 0;
+
+        // Lose more lives than available
+        for (int i = 0; i < 4; i++)
+        {
+            livesScript.LoseLife();
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        Assert.AreEqual(expectedLivesAfterDamage, livesScript.GetLives());
+    }
 }

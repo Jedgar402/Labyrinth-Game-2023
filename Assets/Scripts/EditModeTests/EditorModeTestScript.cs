@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.TestTools;
-using UnityEngine.UI;
 
 public class EditorModeTestScript
 {
@@ -12,32 +8,28 @@ public class EditorModeTestScript
     public void TestQuitLevelButton()
     {
         UnityEditor.EditorApplication.isPlaying = false;
-
-    }
-    [Test]
-    public void Test_lives()
-    {
-       int health(3);
-       Assert.AreEqual(expected: 3, actual: health);
-
     }
 
     [Test]
-    public void Test_lives_damage_1()
+    public void TestLives()
     {
-       int health(3);
-        lives--;
-       Assert.AreEqual(expected: 2, actual: health);
+        // Create an empty game object and add the Lives script to it
+        GameObject testObject = new GameObject();
+        Lives livesScript = testObject.AddComponent<Lives>();
 
+        int expectedLives = 3;
+        Assert.AreEqual(expectedLives, livesScript.GetLives());
     }
 
     [Test]
-    public void Test_lives_lowerthan0()
+    public void TestLivesDamage()
     {
-       int health(0)
-       Assert.AreEqual(expected: 0, actual: health);
+        GameObject testObject = new GameObject();
+        Lives livesScript = testObject.AddComponent<Lives>();
 
+        int expectedLivesAfterDamage = 2;
+        livesScript.LoseLife();
+
+        Assert.AreEqual(expectedLivesAfterDamage, livesScript.GetLives());
     }
-
-    
 }

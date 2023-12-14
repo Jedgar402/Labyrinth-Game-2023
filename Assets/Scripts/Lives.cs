@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,15 +8,19 @@ public class Lives : MonoBehaviour
     private int lives = 3;
     public Text LivesText;
 
+    public int GetLives()
+    {
+        return lives;
+    }
+
     void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             LoseLife();
             LivesText.text = "Lives: " + lives;
         }
     }
-
 
     public void LoseLife()
     {
@@ -25,6 +28,7 @@ public class Lives : MonoBehaviour
 
         if (lives <= 0)
         {
+            lives = 0;
             // Call a method to handle game over, e.g., loading the game over scene
             GameOver();
         }
@@ -36,6 +40,3 @@ public class Lives : MonoBehaviour
         SceneManager.LoadScene("Game Over");
     }
 }
-
-    
-
