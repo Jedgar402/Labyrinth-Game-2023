@@ -9,7 +9,6 @@ public class Lives : MonoBehaviour
     private int lives = 3;
     public Text LivesText;
 
-
     void OnTriggerEnter(Collider collision)
     {
         if(collision.gameObject.tag == "Enemy")
