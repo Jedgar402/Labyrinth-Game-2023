@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameController : MonoBehaviour
 {
@@ -16,49 +17,74 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        // Assign Ball script to the ball GameObject
-        if (ball == null)
-        {
-            ball = GameObject.Find("Ball");
+        SetUpGame();
 
-            if (ball != null)
-            {
-                Ball ballScript = ball.GetComponent<Ball>();
+        //// Assign Ball script to the ball GameObject
+        //if (ball == null)
+        //{
+        //    ball = GameObject.Find("Ball");
 
-                if (ballScript != null)
-                {
-                    ballScript.gameCont = this;
-                }
-                else
-                {
-                    Debug.LogError("Ball script not found on the player GameObject.");
-                }
-            }
-            else
-            {
-                Debug.LogError("Ball GameObject not found.");
-            }
-        }
+        //    if (ball != null)
+        //    {
+        //        Ball ballScript = ball.GetComponent<Ball>();
 
-        if (startButton == null)
-        {
-            startButton = GameObject.FindGameObjectWithTag("Start Button");
-            // UI
+        //        if (ballScript != null)
+        //        {
+        //            ballScript.gameCont = this;
+        //        }
+        //        else
+        //        {
+        //            Debug.LogError("Ball script not found on the player GameObject.");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Debug.LogError("Ball GameObject not found.");
+        //    }
+        //}
+
+        //if (startButton == null)
+        //{
+        //    startButton = GameObject.FindGameObjectWithTag("Start Button");
+        //    // UI
+        //    startButton.SetActive(true);
+        //}
+        //else
+        //{
+        //    // UI
+        //    startButton.SetActive(true);
+        //}
+
+        //if (title == null)
+        //{
+        //    title = GameObject.FindGameObjectWithTag("Title");
+        //    title.SetActive(true);
+        //}
+        //else
+        //{
+        //    title.SetActive(true);
+        //}
+    }
+    public void StartGame()
+    {
+        ball.SetActive(true);
+        startButton.SetActive(false);
+        title.SetActive(false);
+    }
+
+    private void SetUpGame()
+    {
+        if (ball != null && startButton != null && title != null) 
+        { 
+            ball.SetActive(false);
             startButton.SetActive(true);
-        }
-        else
-        {
-            // UI
-            startButton.SetActive(true);
-        }
-
-        if (title == null)
-        {
-            title = GameObject.FindGameObjectWithTag("Title");
-        }
-        else
-        {
             title.SetActive(true);
+        }
+        else
+        {
+            ball = GameObject.FindGameObjectWithTag("Player");
+            startButton = GameObject.FindGameObjectWithTag("Start Button");
+            title = GameObject.FindGameObjectWithTag("Title");
         }
     }
 
@@ -80,12 +106,7 @@ public class GameController : MonoBehaviour
         titleText = titleTextComponent;
     }
 
-    public void StartGame()
-    {
-        ball.SetActive(true);
-        startButton.SetActive(false);
-        title.SetActive(false);
-    }
+    
 
     public void LevelComplete()
     {
