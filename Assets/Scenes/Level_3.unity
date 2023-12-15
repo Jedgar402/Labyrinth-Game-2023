@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 705507994}
+  m_Sun: {fileID: 0}
   m_IndirectSpecularColor: {r: 0.8603951, g: 0.7786002, b: 0.6549473, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
@@ -123,12 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!108 &705507994 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 3399859094292179244, guid: 3129bd645a02bae4796ae3d8bdff4019, type: 3}
-  m_PrefabInstance: {fileID: 3399859094996622262}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &3399859094996622262
+--- !u!1001 &1839133350
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -184,33 +179,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level_3
       objectReference: {fileID: 0}
-    - target: {fileID: 3399859095171036930, guid: 3129bd645a02bae4796ae3d8bdff4019, type: 3}
-      propertyPath: m_TagString
-      value: GameController
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4416933663656946877, guid: 3129bd645a02bae4796ae3d8bdff4019, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3399859094996622264}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3129bd645a02bae4796ae3d8bdff4019, type: 3}
---- !u!1 &3399859094996622263 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4416933663656946877, guid: 3129bd645a02bae4796ae3d8bdff4019, type: 3}
-  m_PrefabInstance: {fileID: 3399859094996622262}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3399859094996622264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3399859094996622263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b78d788560c6c54ba0160663790ba2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LivesText: {fileID: 0}

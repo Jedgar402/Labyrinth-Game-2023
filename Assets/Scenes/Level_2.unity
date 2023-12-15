@@ -123,25 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &685906939 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7968333126033852061, guid: 1933044070f38394b9d628a18bc8a3f7, type: 3}
-  m_PrefabInstance: {fileID: 7968333127057462872}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &685906940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 685906939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b78d788560c6c54ba0160663790ba2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LivesText: {fileID: 0}
---- !u!1001 &7968333127057462872
+--- !u!1001 &1273683000
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -197,15 +179,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level_2
       objectReference: {fileID: 0}
-    - target: {fileID: 7968333127013087980, guid: 1933044070f38394b9d628a18bc8a3f7, type: 3}
-      propertyPath: m_TagString
-      value: GameController
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7968333126033852061, guid: 1933044070f38394b9d628a18bc8a3f7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 685906940}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1933044070f38394b9d628a18bc8a3f7, type: 3}
