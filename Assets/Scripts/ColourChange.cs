@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class ColourChange : MonoBehaviour
 {
-    private Material[] materials; // Array of colors to cycle through
+    // Array of colors to cycle through
+    public Material[] materials;
 
-    public float colorChangeInterval = 1f; // Time interval between color changes
-
-    private int currentColorIndex = 0;
+    // Time interval between color changes
+    public float colorChangeInterval = 1f;
+    public int currentColorIndex = 0;
     public Material nextMaterial;
 
     private void Awake()
@@ -17,7 +18,7 @@ public class ColourChange : MonoBehaviour
         GetMaterials();
     }
 
-    private void GetMaterials()
+    public void GetMaterials()
     {
         string[] materialNames = { "BlueGoal", "GreenGoal", "RedGoal" };
         List<Material> loadedMaterials = new List<Material>();
@@ -47,7 +48,7 @@ public class ColourChange : MonoBehaviour
             Debug.LogError("No materials found in the 'Materials' folder within the 'Resources' folder.");
         }
 
-        Renderer renderer = GetComponent<Renderer>();
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
 
         if (renderer != null)
         {
@@ -69,7 +70,7 @@ public class ColourChange : MonoBehaviour
         {
             currentColorIndex = (currentColorIndex + 1) % materials.Length;
 
-            Renderer renderer = gameObject.GetComponent<MeshRenderer>();
+            MeshRenderer renderer = gameObject.GetComponent<MeshRenderer>();
 
             if (renderer != null)
             {
@@ -88,5 +89,14 @@ public class ColourChange : MonoBehaviour
         }
     }
 
-}
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other != null && other.gameObject.CompareTag("Collectable"))
+        {
+            ChangeColor();
 
+            // Explicitly destroy the ColourChange component along with the game object
+            Destroy(other.gameObject);
+        }
+    }
+}

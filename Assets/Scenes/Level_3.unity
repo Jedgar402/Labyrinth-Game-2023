@@ -179,8 +179,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level_3
       objectReference: {fileID: 0}
+    - target: {fileID: 3399859095171036931, guid: 3129bd645a02bae4796ae3d8bdff4019, type: 3}
+      propertyPath: ball
+      value: 
+      objectReference: {fileID: 1839133351}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3129bd645a02bae4796ae3d8bdff4019, type: 3}
+--- !u!1 &1839133351 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1260642141662586729, guid: 3129bd645a02bae4796ae3d8bdff4019, type: 3}
+  m_PrefabInstance: {fileID: 1839133350}
+  m_PrefabAsset: {fileID: 0}

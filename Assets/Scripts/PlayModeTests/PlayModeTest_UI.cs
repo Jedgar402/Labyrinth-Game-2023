@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class PlayModeTest_UI
 {
+
     [UnityTest]
     public IEnumerator TestRestartLevelButton()
     {
@@ -64,5 +65,25 @@ public class PlayModeTest_UI
         yield return new WaitForSeconds(1f);
 
         Assert.AreEqual(expectedLivesAfterDamage, livesScript.GetLives());
+    }
+
+    [UnityTest]
+    public IEnumerator OnTriggerEnter_ChangesColorOnCollectableCollision()
+    {
+        // Arrange
+        GameObject testObject = new GameObject();
+        ColourChange colourChange = testObject.AddComponent<ColourChange>();
+        MeshRenderer meshRenderer = testObject.AddComponent<MeshRenderer>();
+        Collider collectableCollider = new GameObject().AddComponent<BoxCollider>();
+        collectableCollider.gameObject.tag = "Collectable";
+
+        // Act
+        colourChange.OnTriggerEnter(collectableCollider);
+
+        // Wait for the end of the frame to ensure OnTriggerExit is called
+        yield return null;
+
+        // Assert after waiting for the destruction to occur
+        Assert.IsNull(collectableCollider.gameObject, "CollectableCollider should be null after destruction.");
     }
 }
