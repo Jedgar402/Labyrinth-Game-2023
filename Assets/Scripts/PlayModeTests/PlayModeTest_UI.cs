@@ -87,4 +87,18 @@ public class PlayModeTest_UI
         // Assert after waiting for the destruction to occur
         Assert.IsNotNull(collectableObject, "CollectableObject should be null after destruction.");
     }
+
+    //[UnityTest]
+    //public IEnumerator Tests_Enemy_hit_ball()
+    //{
+    //    Vector3 Current = enemy.hitball().transform.position;
+
+    //    enemy.hitball();
+        
+    //    yield return null;
+        
+    //    Vector3 finalPos = enemy.hitball().transform.position;
+
+    //    Assert.Greater(finalPos.x, Current.x);
+    //}
 }

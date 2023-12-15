@@ -4,6 +4,16 @@ using UnityEngine.SceneManagement;
 
 public class EditorModeTestScript
 {
+    // A Test behaves as an ordinary method
+    [Test]
+    public void EnemyHelathDamage()
+    {
+        // Use the Assert class to test conditions
+        int finalHealth = Enemy.DamageEnemy(05);
+
+        Assert.AreEqual(expected: 0, actual: finalHealth);
+    }
+
     [Test]
     public void TestQuitLevelButton()
     {
