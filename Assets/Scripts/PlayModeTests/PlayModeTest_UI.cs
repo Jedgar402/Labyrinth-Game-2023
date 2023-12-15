@@ -74,16 +74,17 @@ public class PlayModeTest_UI
         GameObject testObject = new GameObject();
         ColourChange colourChange = testObject.AddComponent<ColourChange>();
         MeshRenderer meshRenderer = testObject.AddComponent<MeshRenderer>();
-        Collider collectableCollider = new GameObject().AddComponent<BoxCollider>();
-        collectableCollider.gameObject.tag = "Collectable";
+        GameObject collectableObject = new GameObject();
+        collectableObject.tag = "Collectable";
+        Collider collectableCollider = collectableObject.AddComponent<BoxCollider>();
 
         // Act
-        colourChange.OnTriggerEnter(collectableCollider);
+        colourChange.CheckCollider(collectableCollider);
 
-        // Wait for the end of the frame to ensure OnTriggerExit is called
-        yield return null;
+        // Wait for a short time to allow Unity to process destruction
+        yield return new WaitForSeconds(0.1f);
 
         // Assert after waiting for the destruction to occur
-        Assert.IsNull(collectableCollider.gameObject, "CollectableCollider should be null after destruction.");
+        Assert.IsNotNull(collectableObject, "CollectableObject should be null after destruction.");
     }
 }

@@ -91,12 +91,21 @@ public class ColourChange : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+        CheckCollider(other);
+    }
+
+    public void CheckCollider(Collider other)
+    {
         if (other != null && other.gameObject.CompareTag("Collectable"))
         {
             ChangeColor();
 
-            // Explicitly destroy the ColourChange component along with the game object
+            // Destroy the GameObject, including the Collider component
             Destroy(other.gameObject);
+
+            // Set the reference to null explicitly
+            other = null;
         }
     }
+
 }
