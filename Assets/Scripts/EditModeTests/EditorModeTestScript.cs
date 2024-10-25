@@ -11,6 +11,7 @@ public class EditorModeTestScript
         // Use the Assert class to test conditions
         int finalHealth = Enemy.DamageEnemy(05);
 
+        //Assert
         Assert.AreEqual(expected: 0, actual: finalHealth);
     }
 
@@ -27,6 +28,7 @@ public class EditorModeTestScript
         GameObject testObject = new GameObject();
         Lives livesScript = testObject.AddComponent<Lives>();
 
+        //ASsert
         int expectedLives = 3;
         Assert.AreEqual(expectedLives, livesScript.GetLives());
     }
@@ -34,12 +36,15 @@ public class EditorModeTestScript
     [Test]
     public void TestLivesDamage()
     {
+        //Arrange
         GameObject testObject = new GameObject();
         Lives livesScript = testObject.AddComponent<Lives>();
 
+        //Act
         int expectedLivesAfterDamage = 2;
         livesScript.LoseLife();
 
+        //ASsert
         Assert.AreEqual(expectedLivesAfterDamage, livesScript.GetLives());
     }
 

@@ -23,23 +23,29 @@ public class Ball : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Update the material for the colour change mechanic
         material = gameObject.GetComponent<MeshRenderer>().material;
     }
 
     public void OnTriggerEnter(Collider col)
     {
+        //if the collider is not null / if it exists
         if (col != null)
         {
+            //Check if the object is goal
             if (col.gameObject.name == "Goal")
             {
+                //Get the goal and player materials
                 Material goalMaterial = col.gameObject.GetComponent<MeshRenderer>().material;
                 Material thisMaterial = this.gameObject.GetComponent<MeshRenderer>().material;
 
                 Debug.Log("thisMaterial.color: " + thisMaterial.color);
                 Debug.Log("goalMaterial.color: " + goalMaterial.color);
 
+                //Check if they are the same materials
                 if (thisMaterial.color == goalMaterial.color)
                 {
+                    //Complete level if they are the same
                     gameCont.LevelComplete();
                 }
             }
